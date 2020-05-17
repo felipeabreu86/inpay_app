@@ -9,7 +9,6 @@ import 'package:inpay_app/Services/firestore.dart';
 import 'package:inpay_app/Services/routeGenerator.dart';
 import 'package:inpay_app/Utils/constants.dart';
 
-
 /// Método principal que inicializa o aplicativo
 void main() {
   runApp(

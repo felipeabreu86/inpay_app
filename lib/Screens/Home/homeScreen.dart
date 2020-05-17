@@ -1,3 +1,4 @@
+import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:inpay_app/Components/drawer.dart';
 import 'package:inpay_app/Enums/telasBottomNavigation.dart';
@@ -47,30 +48,46 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
       ),
-      floatingActionButton: StreamBuilder<int>(
-        stream: widget.bloc.floatingActionButtonStream,
-        initialData: 0,
-        builder: (context, snapshot) {
-          var _indexPressed = snapshot.data;
-          var corItem = _indexPressed == TelasBottomNavigation.LIFE.index
-              ? Colors.yellow
-              : Colors.white;
-          return FloatingActionButton(
-            backgroundColor: AZUL_INPAY,
-            onPressed: () {
-              widget.bloc.atualizarTela(TelasBottomNavigation.LIFE);
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.home, color: corItem),
-                Text("LIFE", style: TextStyle(fontSize: 11, color: corItem)),
-              ],
-            ),
-            elevation: 5.0,
-          );
-        },
-      ),
+      floatingActionButton: FabCircularMenu(
+          alignment: Alignment.bottomRight,
+          fabElevation: 0,
+          fabSize: 54.0,
+          fabOpenIcon: const Icon(Icons.add),
+          fabMargin: EdgeInsets.only(bottom: 70.0, right: 20),
+          children: <Widget>[
+            IconButton(
+                icon: Icon(
+                  Icons.home,
+                  size: 40,
+                ),
+                onPressed: () {
+                  print('Home');
+                }),
+            IconButton(
+                icon: Icon(
+                  Icons.favorite,
+                  size: 40,
+                ),
+                onPressed: () {
+                  print('Favorite');
+                }),
+            IconButton(
+                icon: Icon(
+                  Icons.notifications,
+                  size: 40,
+                ),
+                onPressed: () {
+                  print('Favorite');
+                }),
+            IconButton(
+                icon: Icon(
+                  Icons.settings,
+                  size: 40,
+                ),
+                onPressed: () {
+                  print('Favorite');
+                })
+          ]),
       bottomNavigationBar: StreamBuilder<int>(
         stream: widget.bloc.bottomNavigationStream,
         initialData: 0,
@@ -118,7 +135,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                Expanded(child: new Text('')),
+                StreamBuilder<int>(
+                  stream: widget.bloc.floatingActionButtonStream,
+                  initialData: 0,
+                  builder: (context, snapshot) {
+                    var _indexPressed = snapshot.data;
+                    var corItem =
+                        _indexPressed == TelasBottomNavigation.LIFE.index
+                            ? Colors.yellow
+                            : Colors.white;
+                    return RaisedButton(
+                      child: Text(
+                        'LIFE',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: corItem,
+                        ),
+                      ),
+                      color: AZUL_INPAY,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
+                      onPressed: () {
+                        widget.bloc.atualizarTela(TelasBottomNavigation.LIFE);
+                      },
+                    );
+                  },
+                ),
                 Expanded(
                   child: IconButton(
                     icon: new Tab(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:inpay_app/Components/circleAvatar.dart';
 import 'package:inpay_app/Services/appInfo.dart';
@@ -50,15 +52,25 @@ class HomeDrawer extends StatelessWidget {
             ),
           ),
           CustomListTile(Icons.person, 'Perfil', () {
-            Navigator.pop(context);
+            Timer(Duration(milliseconds: 300), () {
+              Navigator.pop(context);
+            });
           }),
           CustomListTile(Icons.notifications, 'Notificações', () {
-            Navigator.pop(context);
+            Timer(Duration(milliseconds: 300), () {
+              Navigator.pop(context);
+            });
           }),
           CustomListTile(Icons.settings, 'Configurações', () {
-            Navigator.pop(context);
+            Timer(Duration(milliseconds: 300), () {
+              Navigator.pop(context);
+            });
           }),
-          CustomListTile(Icons.lock, 'Sair', logoutCallback),
+          CustomListTile(Icons.lock, 'Sair', () {
+            Timer(Duration(milliseconds: 300), () {
+              logoutCallback();
+            });
+          }),
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(

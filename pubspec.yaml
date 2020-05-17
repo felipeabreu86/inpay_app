@@ -36,6 +36,7 @@ dependencies:
   charts_flutter: ^0.6.0              # Graficos
   cached_network_image: ^2.2.0+1      # Armazena imagem em cache
   package_info: ^0.4.0+17             # Informacoes sobre o app
+  fab_circular_menu: ^1.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
