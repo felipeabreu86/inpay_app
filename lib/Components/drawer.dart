@@ -10,6 +10,7 @@ class HomeDrawer extends StatelessWidget {
   final VoidCallback logoutCallback;
   final String urlImagem = Database().usuarioLogado?.urlImagem ?? "";
   final String versao = AppInfo().version;
+  final int waitTime = 280;
 
   HomeDrawer(this.logoutCallback);
 
@@ -52,22 +53,22 @@ class HomeDrawer extends StatelessWidget {
             ),
           ),
           CustomListTile(Icons.person, 'Perfil', () {
-            Timer(Duration(milliseconds: 300), () {
+            Timer(Duration(milliseconds: waitTime), () {
               Navigator.pop(context);
             });
           }),
           CustomListTile(Icons.notifications, 'Notificações', () {
-            Timer(Duration(milliseconds: 300), () {
+            Timer(Duration(milliseconds: waitTime), () {
               Navigator.pop(context);
             });
           }),
           CustomListTile(Icons.settings, 'Configurações', () {
-            Timer(Duration(milliseconds: 300), () {
+            Timer(Duration(milliseconds: waitTime), () {
               Navigator.pop(context);
             });
           }),
           CustomListTile(Icons.lock, 'Sair', () {
-            Timer(Duration(milliseconds: 300), () {
+            Timer(Duration(milliseconds: waitTime), () {
               logoutCallback();
             });
           }),

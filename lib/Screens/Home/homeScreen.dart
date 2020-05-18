@@ -52,7 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
           alignment: Alignment.bottomRight,
           fabElevation: 0,
           fabSize: 54.0,
-          fabOpenIcon: const Icon(Icons.add),
+          fabColor: AZUL_INPAY,
+          fabOpenIcon: const Icon(Icons.add, color: Colors.white),
+          fabCloseIcon: const Icon(Icons.close, color: Colors.white),
+          ringColor: Colors.blue,
           fabMargin: EdgeInsets.only(bottom: 70.0, right: 20),
           children: <Widget>[
             IconButton(
@@ -135,32 +138,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                StreamBuilder<int>(
-                  stream: widget.bloc.floatingActionButtonStream,
-                  initialData: 0,
-                  builder: (context, snapshot) {
-                    var _indexPressed = snapshot.data;
-                    var corItem =
-                        _indexPressed == TelasBottomNavigation.LIFE.index
-                            ? Colors.yellow
-                            : Colors.white;
-                    return RaisedButton(
-                      child: Text(
-                        'LIFE',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: corItem,
-                        ),
-                      ),
-                      color: AZUL_INPAY,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32),
-                      ),
-                      onPressed: () {
-                        widget.bloc.atualizarTela(TelasBottomNavigation.LIFE);
-                      },
-                    );
+                RaisedButton(
+                  child: Text(
+                    'LIFE',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: _indexPressed == TelasBottomNavigation.LIFE.index
+                          ? Colors.yellow
+                          : Colors.white,
+                    ),
+                  ),
+                  color: AZUL_INPAY,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  onPressed: () {
+                    widget.bloc.atualizarTela(TelasBottomNavigation.LIFE);
                   },
                 ),
                 Expanded(
